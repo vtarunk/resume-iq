@@ -1,0 +1,17 @@
+# Hide secret environment keys
+.env
+.env.local
+*.env
+
+# Hide Python virtual environment & cache
+backend/venv/
+backend/__pycache__/
+*.pyc
+
+# Hide Node modules & build folders
+frontend/node_modules/
+frontend/dist/
+
+# Hide system files
+.DS_Store
+Thumbs.db
