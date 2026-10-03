@@ -1,14 +1,18 @@
 ﻿import axios from 'axios';
 
-// Get the backend URL from environment variables, fallback to localhost:8000
-const API_URL = import.meta.env.VITE_BACKEND_URL || "https://resume-iq-backend-krq9.onrender.com";
+// Uses your Vercel environment variable or falls back directly to Render
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || 'https://resume-iq-backend-krq9.onrender.com';
+
+const api = axios.create({
+  baseURL: API_BASE_URL,
+});
 
 export const analyzeResume = async (file, jdText) => {
   const formData = new FormData();
-  formData.append('resume', file);
-  formData.append('job_description', jdText);
+  formData.append('file', file);
+  formData.append('jd_text', jdText);
 
-  const response = await axios.post(`${API_BASE_URL}/analyze`, formData, {
+  const response = await api.post('/analyze', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -16,3 +20,5 @@ export const analyzeResume = async (file, jdText) => {
 
   return response.data;
 };
+
+export default api;

@@ -13,7 +13,7 @@ export default function App() {
       const result = await analyzeResume(file, jdText);
       setAnalysisResult(result);
     } catch (err) {
-      alert(err.response?.data?.detail || 'Failed to analyze resume. Make sure FastAPI is running on port 8000.');
+      alert(err.response?.data?.detail || 'Failed to analyze resume. Please ensure the backend server is reachable.');
     } finally {
       setLoading(false);
     }
